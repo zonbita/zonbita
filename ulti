@@ -1,0 +1,19 @@
+bool UAC_InteractionSystem_Player::CheckCloserActor(float& _Angle, AActor* Actor, APawn* Player)
+{
+	if(Actor == nullptr)
+		return false;
+
+	FVector RelativeVector = Actor->GetActorLocation() - Player->GetActorLocation();
+	RelativeVector = FVector(RelativeVector.X, RelativeVector.Y, 0.0f);
+	FVector NormVec = RelativeVector.GetSafeNormal();
+
+	float DotResult = NormVec.Dot(Player->GetActorForwardVector());
+	float angle = FMath::Abs(UKismetMathLibrary::DegAcos(DotResult));
+
+	if(angle < _Angle)
+	{
+		_Angle = angle;
+		return true;
+	}
+	return false;
+}
