@@ -17,3 +17,17 @@ bool UAC_InteractionSystem_Player::CheckCloserActor(float& _Angle, AActor* Actor
 	}
 	return false;
 }
+
+
+
+	//Interactive keystroke duration.This parameter is valid only when InputActionType is set to Press - Keep.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Detail|Key", meta = (EditCondition = "InputActionType == E_InteractionInputType::KeyPress_Keep", EditConditionHides))
+	float KeepTime;
+
+	//Number of interactive consecutive keystrokes. This parameter is valid only when InputActionType is set to Press-Multi.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Detail|Key", meta = (EditCondition = "InputActionType == E_InteractionInputType::KeyPress_Multi", EditConditionHides))
+	int PressKeyAmount;
+
+	//The detection time of each keystroke for consecutive keystrokes. Within this time, the specified key must be pressed, otherwise the interaction fails. This parameter is valid only when InputActionType is set to Press-Multi.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Detail|Key", meta = (EditCondition = "InputActionType == E_InteractionInputType::KeyPress_Multi", EditConditionHides))
+	float PressCheckTime;
